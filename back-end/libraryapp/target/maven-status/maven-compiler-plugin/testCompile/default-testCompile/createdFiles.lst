@@ -1,0 +1,11 @@
+mk\com\iwec\BookApp\author\repository\AuthorRepositoryTest.class
+mk\com\iwec\BookApp\publisher\controller\PublisherControllerTest.class
+mk\com\iwec\BookApp\utils\TestUtil.class
+mk\com\iwec\BookApp\category\repository\CategoryRepositoryTest.class
+mk\com\iwec\BookApp\source\repository\SourceRepositoryTest.class
+mk\com\iwec\BookApp\author\controller\AuthorControllerTest.class
+mk\com\iwec\BookApp\book\controller\BookControllerTest.class
+mk\com\iwec\BookApp\category\controller\CategoryControllerTest.class
+mk\com\iwec\BookApp\BookAppApplicationTests.class
+mk\com\iwec\BookApp\book\repository\BookRepositoryTest.class
+mk\com\iwec\BookApp\publisher\repository\PublisherRepositoryTest.class

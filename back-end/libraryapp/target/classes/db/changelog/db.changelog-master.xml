@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet author="vsshm (generated)" id="1648032642089-1">
+        <createSequence sequenceName="hibernate_sequence"/>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-2">
+        <createTable tableName="author">
+            <column name="ssn" type="VARCHAR(13)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="birth_date" type="TIMESTAMP(29) WITHOUT TIME ZONE"/>
+            <column name="last_name" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-3">
+        <createTable tableName="book">
+            <column name="book_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="edition" type="BIGINT"/>
+            <column name="name" type="VARCHAR(200)"/>
+            <column name="publisher_publisher_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-4">
+        <createTable tableName="book_category">
+            <column name="book_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-5">
+        <createTable tableName="book_from_authors">
+            <column name="book_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ssn" type="VARCHAR(13)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-6">
+        <createTable tableName="category">
+            <column name="category_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-7">
+        <createTable tableName="city">
+            <column name="city_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(200)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-8">
+        <createTable tableName="publisher">
+            <column name="publisher_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="address" type="VARCHAR(255)"/>
+            <column name="name" type="VARCHAR(255)"/>
+            <column name="city_city_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-9">
+        <createTable tableName="source">
+            <column name="source_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="format" type="VARCHAR(255)"/>
+            <column name="img_src" type="VARCHAR(255)"/>
+            <column name="url" type="VARCHAR(255)"/>
+            <column name="sources_book_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-10">
+        <addPrimaryKey columnNames="ssn" constraintName="author_pkey" tableName="author"/>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-11">
+        <addPrimaryKey columnNames="book_id" constraintName="book_pkey" tableName="book"/>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-12">
+        <addPrimaryKey columnNames="category_id" constraintName="category_pkey" tableName="category"/>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-13">
+        <addPrimaryKey columnNames="city_id" constraintName="city_pkey" tableName="city"/>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-14">
+        <addPrimaryKey columnNames="publisher_id" constraintName="publisher_pkey" tableName="publisher"/>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-15">
+        <addPrimaryKey columnNames="source_id" constraintName="source_pkey" tableName="source"/>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-16">
+        <addForeignKeyConstraint baseColumnNames="ssn" baseTableName="book_from_authors" constraintName="fk330mv2v751ogeiin5auyexw9x" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="ssn" referencedTableName="author"/>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-17">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="book_category" constraintName="fkam8llderp40mvbbwceqpu6l2s" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="category_id" referencedTableName="category"/>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-18">
+        <addForeignKeyConstraint baseColumnNames="sources_book_id" baseTableName="source" constraintName="fkap24xu0n6y6o7oeqktomysg98" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="book_id" referencedTableName="book"/>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-19">
+        <addForeignKeyConstraint baseColumnNames="publisher_publisher_id" baseTableName="book" constraintName="fkku84943ve4s7xdq8wunk6g2vf" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="publisher_id" referencedTableName="publisher"/>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-20">
+        <addForeignKeyConstraint baseColumnNames="city_city_id" baseTableName="publisher" constraintName="fknfdgqena1nlbnlvtjm7jd5t7k" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="city_id" referencedTableName="city"/>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-21">
+        <addForeignKeyConstraint baseColumnNames="book_id" baseTableName="book_category" constraintName="fknyegcbpvce2mnmg26h0i856fd" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="book_id" referencedTableName="book"/>
+    </changeSet>
+    <changeSet author="vsshm (generated)" id="1648032642089-22">
+        <addForeignKeyConstraint baseColumnNames="book_id" baseTableName="book_from_authors" constraintName="fkq9ecy25tvlgbneiml3swrova" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="book_id" referencedTableName="book"/>
+    </changeSet>
+</databaseChangeLog>

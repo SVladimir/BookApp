@@ -1,0 +1,88 @@
+Index: back-end/libraryapp/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/back-end/libraryapp/pom.xml b/back-end/libraryapp/pom.xml
+--- a/back-end/libraryapp/pom.xml	(revision e314a8f8c6c7f619d58ce8c0fede36df0538b670)
++++ b/back-end/libraryapp/pom.xml	(revision 7598a8d4df7db12c016a48e34a2199f564123f32)
+@@ -52,6 +52,10 @@
+ 			<version>3.0.0</version>
+ 		</dependency>
+ 		<dependency>
++			<groupId>org.liquibase</groupId>
++			<artifactId>liquibase-core</artifactId>
++		</dependency>
++		<dependency>
+ 			<groupId>junit</groupId>
+ 			<artifactId>junit</artifactId>
+ 			<scope>test</scope>
+@@ -60,6 +64,14 @@
+ 
+ 	<build>
+ 		<plugins>
++			<plugin>
++				<groupId>org.liquibase</groupId>
++				<artifactId>liquibase-maven-plugin</artifactId>
++				<version>3.4.1</version>
++				<configuration>
++					<propertyFile>src/main/resources/liquibase.properties</propertyFile>
++				</configuration>
++			</plugin>
+ 			<plugin>
+ 				<groupId>org.springframework.boot</groupId>
+ 				<artifactId>spring-boot-maven-plugin</artifactId>
+Index: back-end/libraryapp/src/main/resources/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1251
+===================================================================
+diff --git a/back-end/libraryapp/src/main/resources/application.properties b/back-end/libraryapp/src/main/resources/application.properties
+--- a/back-end/libraryapp/src/main/resources/application.properties	(revision e314a8f8c6c7f619d58ce8c0fede36df0538b670)
++++ b/back-end/libraryapp/src/main/resources/application.properties	(revision 7598a8d4df7db12c016a48e34a2199f564123f32)
+@@ -1,10 +1,11 @@
+-spring.datasource.url=jdbc:postgresql://localhost:5432/zashitnik
++spring.datasource.url=jdbc:postgresql://localhost:5432/app
+ spring.datasource.username=postgres
+ spring.datasource.password=sys
+ spring.datasource.driver-class-name=org.postgresql.Driver
+ spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+ spring.jpa.generate-ddl=true
+-spring.jpa.hibernate.ddl-auto=create 
++spring.jpa.hibernate.ddl-auto=create
+ #update
+ #spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+-spring.jpa.hibernate.show_sql=true
+\ No newline at end of file
++spring.jpa.hibernate.show_sql=true
++spring.liquibase.change-log=classpath:db/changelog/db.changelog-master.xml
+Index: back-end/libraryapp/src/main/resources/liquibase.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1251
+===================================================================
+diff --git a/back-end/libraryapp/src/main/resources/liquibase.properties b/back-end/libraryapp/src/main/resources/liquibase.properties
+new file mode 100644
+--- /dev/null	(revision 7598a8d4df7db12c016a48e34a2199f564123f32)
++++ b/back-end/libraryapp/src/main/resources/liquibase.properties	(revision 7598a8d4df7db12c016a48e34a2199f564123f32)
+@@ -0,0 +1,5 @@
++url=jdbc:postgresql://localhost:5432/app
++username=postgres
++password=sys
++driver=org.postgresql.Driver
++outputChangeLogFile=src/main/resources/liquibase-outputChangeLog.xml
+\ No newline at end of file
+Index: README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/README.md b/README.md
+new file mode 100644
+--- /dev/null	(revision 1e4e7f5fc3ead69c51f3e89eae03ea7c9ae7dc5a)
++++ b/README.md	(revision 1e4e7f5fc3ead69c51f3e89eae03ea7c9ae7dc5a)
+@@ -0,0 +1,1 @@
++# books
+\ No newline at end of file
+diff --git a/back-end/libraryapp/src/main/resources/db/changelog/db.changelog-master.yaml b/back-end/libraryapp/src/main/resources/db/changelog/db.changelog-master.yaml
+new file mode 100644
